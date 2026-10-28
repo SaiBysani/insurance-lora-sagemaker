@@ -1,0 +1,51 @@
+BLUEPEAK INSURANCE CO.
+Business Property Coverage Form
+
+DECLARATIONS
+Policy Number: CY-633981-92
+Named Insured: Larkspur Bakery LLC
+Policy Period: March 8, 2026 to March 8, 2027, 12:01 a.m. standard time
+Limit of Insurance: $1.4 million per occurrence
+Deductible: $5,000 per occurrence
+
+SECTION I - GENERAL PROVISIONS
+Premium shown in the Declarations was computed based on rates in effect at the time the policy was issued.
+We will not pay for loss unless you have complied with all of the terms of this policy, including the duties after loss.
+
+SECTION II - EXCLUSIONS
+This insurance does not apply to:
+A. Rising water from any natural source, whether or not driven by wind, unless the water escapes from a plumbing, heating, or fire sprinkler system inside the insured building.
+B. Loss caused by the failure of power, communication, or water supply services.
+
+SECTION III - CONDITIONS
+No one may bring a legal action against us unless there has been full compliance with all terms of this policy.
+If there is other insurance covering the same loss, we will pay only our share of the loss.
+
+CLAIM NOTICE
+On May 26, 2026, a pipe burst on the second floor and water flooded the stockroom. The insured is claiming $971,000.
+
+--- EXPECTED JSON ---
+{
+  "policy_number": "CY-633981-92",
+  "policy_type": "commercial_property",
+  "insured": "Larkspur Bakery LLC",
+  "effective_date": "2026-03-08",
+  "expiration_date": "2027-03-08",
+  "coverage_limit_usd": 1400000,
+  "deductible_usd": 5000,
+  "exclusions": [
+    {
+      "peril": "flood",
+      "has_exception": true
+    },
+    {
+      "peril": "power_failure",
+      "has_exception": false
+    }
+  ],
+  "claim": {
+    "peril": "flood",
+    "decision": "covered_by_exception",
+    "payable_usd": 966000
+  }
+}

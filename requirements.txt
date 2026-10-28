@@ -1,0 +1,6 @@
+# Installed by the first notebook cell. SageMaker Distribution already includes PyTorch with CUDA.
+transformers>=4.56
+peft>=0.15
+accelerate>=1.5
+pandas
+matplotlib
