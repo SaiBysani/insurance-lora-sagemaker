@@ -1,6 +1,6 @@
 """Charts from the real SageMaker AI run.
 
-Reads AWS_FINAL/run_outputs/results.json (downloaded from the job's S3 checkpoint folder) and writes
+Reads results/results.json (downloaded from the job's S3 checkpoint folder) and writes
 base_vs_finetuned.png and loss_curve.png next to this script.
 """
 import json
@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-R = json.load(open(os.path.join(HERE, "run_outputs", "results.json"), encoding="utf-8"))
+R = json.load(open(os.path.join(os.path.dirname(HERE), "results", "results.json"), encoding="utf-8"))
 
 INK, INK2, MUTED = "#0b0b0b", "#52514e", "#8a8984"
 SURFACE, GRID = "#fcfcfb", "#e6e5e0"
@@ -61,8 +61,8 @@ ax.plot([p["step"] for p in hist], [p["loss"] for p in hist], color=FT_C, lw=2, 
 ax.yaxis.grid(True, color=GRID, lw=0.8); ax.set_axisbelow(True); clean(ax)
 ax.set_xlabel("Optimizer step (effective batch 16)"); ax.set_ylabel("Training loss")
 first, last = hist[0], hist[-1]
-ax.annotate(f"{first['loss']:.3f}", (first["step"], first["loss"]), textcoords="offset points", xytext=(6, 2), fontsize=8.5, color=INK2)
-ax.annotate(f"{last['loss']:.3f}", (last["step"], last["loss"]), textcoords="offset points", xytext=(-10, 8), fontsize=8.5, color=INK2)
+ax.annotate(f"{first['loss']:.4f}", (first["step"], first["loss"]), textcoords="offset points", xytext=(6, 2), fontsize=8.5, color=INK2)
+ax.annotate(f"{last['loss']:.4f}", (last["step"], last["loss"]), textcoords="offset points", xytext=(-10, 8), fontsize=8.5, color=INK2)
 fig.suptitle(f"LoRA training loss, {R['epochs']} epochs, {R['train_minutes']} min on one A10G", x=0.01, ha="left",
              fontsize=12.5, fontweight="bold", color=INK)
 fig.text(0.01, 0.01, "Loss on the JSON answer tokens only, logged every 5 steps. Measured on SageMaker AI.",

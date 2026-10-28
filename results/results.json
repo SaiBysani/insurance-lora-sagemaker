@@ -1,0 +1,173 @@
+{
+  "model_id": "Qwen/Qwen3-4B-Instruct-2507",
+  "gpu": "NVIDIA A10G",
+  "n_train": 800,
+  "n_test": 150,
+  "epochs": 2,
+  "learning_rate": 0.0002,
+  "lora_rank": 16,
+  "lora_alpha": 32,
+  "trainable_params": 33030144,
+  "total_params": 4055498240,
+  "train_minutes": 23.7,
+  "final_train_loss": 0.0117,
+  "adapter_size_mb": 132.2,
+  "base": {
+    "valid_json": 99.3,
+    "strict_json": 99.3,
+    "schema_ok": 99.3,
+    "fields_acc": 99.1,
+    "exclusions_f1": 73.1,
+    "claim_peril": 77.3,
+    "decision": 64.0,
+    "payable": 66.0,
+    "all_correct": 20.0,
+    "seconds": 210
+  },
+  "finetuned": {
+    "valid_json": 100.0,
+    "strict_json": 100.0,
+    "schema_ok": 100.0,
+    "fields_acc": 100.0,
+    "exclusions_f1": 100.0,
+    "claim_peril": 99.3,
+    "decision": 87.3,
+    "payable": 86.7,
+    "all_correct": 85.3,
+    "seconds": 198
+  },
+  "consistency": {
+    "base": {
+      "identical_across_3_runs": 43.3,
+      "schema_valid_samples": 98.9
+    },
+    "finetuned": {
+      "identical_across_3_runs": 80.0,
+      "schema_valid_samples": 100.0
+    }
+  },
+  "by_decision": [
+    {
+      "Claim type": "covered_by_exception",
+      "Test cases": 33,
+      "Base correct %": 18.2,
+      "Fine-tuned correct %": 90.9
+    },
+    {
+      "Claim type": "excluded",
+      "Test cases": 62,
+      "Base correct %": 93.5,
+      "Fine-tuned correct %": 91.9
+    },
+    {
+      "Claim type": "covered",
+      "Test cases": 45,
+      "Base correct %": 71.1,
+      "Fine-tuned correct %": 97.8
+    },
+    {
+      "Claim type": "outside_policy_period",
+      "Test cases": 10,
+      "Base correct %": 0.0,
+      "Fine-tuned correct %": 0.0
+    }
+  ],
+  "example_index": 1,
+  "loss_history": [
+    {
+      "step": 5,
+      "loss": 0.1466
+    },
+    {
+      "step": 10,
+      "loss": 0.0243
+    },
+    {
+      "step": 15,
+      "loss": 0.017
+    },
+    {
+      "step": 20,
+      "loss": 0.0099
+    },
+    {
+      "step": 25,
+      "loss": 0.0057
+    },
+    {
+      "step": 30,
+      "loss": 0.0034
+    },
+    {
+      "step": 35,
+      "loss": 0.0037
+    },
+    {
+      "step": 40,
+      "loss": 0.0031
+    },
+    {
+      "step": 45,
+      "loss": 0.002
+    },
+    {
+      "step": 50,
+      "loss": 0.0031
+    },
+    {
+      "step": 55,
+      "loss": 0.0015
+    },
+    {
+      "step": 60,
+      "loss": 0.002
+    },
+    {
+      "step": 65,
+      "loss": 0.0012
+    },
+    {
+      "step": 70,
+      "loss": 0.0019
+    },
+    {
+      "step": 75,
+      "loss": 0.0019
+    },
+    {
+      "step": 80,
+      "loss": 0.0013
+    },
+    {
+      "step": 85,
+      "loss": 0.0015
+    },
+    {
+      "step": 90,
+      "loss": 0.0012
+    },
+    {
+      "step": 95,
+      "loss": 0.0015
+    },
+    {
+      "step": 100,
+      "loss": 0.0015
+    }
+  ],
+  "run_environment": {
+    "where": "Amazon SageMaker AI training job",
+    "instance": "ml.g5.2xlarge",
+    "region": "us-east-2",
+    "container": "pytorch-training:2.8.0-gpu-py312-cu129-ubuntu22.04-sagemaker",
+    "versions": {
+      "torch": "2.8.0+cu129",
+      "transformers": "4.57.1",
+      "peft": "0.17.1",
+      "accelerate": "1.10.1"
+    },
+    "job_wall_minutes": 35.6
+  },
+  "base_eval_seconds": 210,
+  "finetuned_eval_seconds": 198
+}

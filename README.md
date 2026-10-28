@@ -8,6 +8,25 @@ Companion code for The Data Hustle newsletter issue *"I fine-tuned a small model
 
 ![Workflow](figures/sagemaker_workflow.png)
 
+## Results
+
+Measured on one Amazon SageMaker AI training job (`ml.g5.2xlarge`, NVIDIA A10G, us-east-2): LoRA training took 23.7 minutes and the whole job 35.6 minutes. 150 held-out synthetic test policies, % of policies:
+
+| Metric | Base (prompt only) | Fine-tuned (LoRA) |
+| --- | --- | --- |
+| Clean JSON only | 99.3 | 100.0 |
+| Exact schema | 99.3 | 100.0 |
+| Policy fields correct | 99.1 | 100.0 |
+| Exclusions F1 | 73.1 | 100.0 |
+| Claim decision correct | 64.0 | 87.3 |
+| Payable amount correct | 66.0 | 86.7 |
+| **Everything correct** | **20.0** | **85.3** |
+| Identical across 3 sampled runs (30 policies) | 43.3 | 80.0 |
+
+![Base vs fine-tuned](results/base_vs_finetuned.png)
+
+Where it still fails: neither model handles claims dated outside the policy period (0 of 10 for both), a few exception calls in unfamiliar wording are wrong, and 3 payouts are off with the right decision. Full numbers, including accuracy by claim type, are in `results/results.json`. Every prediction and its score is in `results/*_predictions.jsonl`, and one worked example is in `results/side_by_side_example.md`. The 132 MB adapter isn't included.
+
 ## What's here
 
 | Path | What it is |
